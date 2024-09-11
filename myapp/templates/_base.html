@@ -69,6 +69,25 @@
         function hideTable() {
             document.getElementById('productTable').style.display = 'none';
         }
+        function calculate() {
+       
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const num3 = parseFloat(document.getElementById('num3').value);
+
+        
+        const average = (num1 + num2 + num3) / 3;
+        const max = Math.max(num1, num2, num3);
+        const min = Math.min(num1, num2, num3);
+
+        
+        document.getElementById('result').innerHTML = 
+    `ค่าเฉลี่ยคือ ${average.toFixed(2)}<br/>`;
+
+        }
+
+
+
     </script>
 </body>
 
