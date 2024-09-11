@@ -1,0 +1,75 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Untitled {% endblock %}</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+</head>
+
+<body>
+    <div class="container mx-auto px-4 pt-4 py-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <script>
+        function changeColor() {
+            // เปลี่ยนสีข้อความเมื่อปุ่มถูกกด
+            document.getElementById('head').style.color = 'red';
+        }
+
+        function ThaiDateTime(date) {
+            let monthNews = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม",
+                "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+
+            let year = date.getFullYear() + 543;
+            let month = monthNews[date.getMonth()];
+            let numOfDay = date.getDate();
+
+            let hours = date.getHours().toString().padStart(2, "0");
+            let minutes = date.getMinutes().toString().padStart(2, "0");
+            let seconds = date.getSeconds().toString().padStart(2, "0");
+
+            return `${numOfDay} ${month} ${year} เวลา ${hours}:${minutes}:${seconds} น.`;
+        }
+
+        function UpdateTime() {
+            let now = new Date();
+            document.getElementById('currentDateTime').innerHTML = ThaiDateTime(now);
+        }
+
+        setInterval(UpdateTime, 1000);
+        UpdateTime();
+
+        function showCatImage() {
+            document.getElementById('catImage').style.display = 'block';
+            document.getElementById('slideImage').style.display = 'none';
+        }
+
+        function showSlideImage() {
+            document.getElementById('catImage').style.display = 'none';
+            document.getElementById('slideImage').style.display = 'block';
+        }
+
+        function showTable() {
+            document.getElementById('productTable').style.display = 'block';
+        }
+
+        function hideTable() {
+            document.getElementById('productTable').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
